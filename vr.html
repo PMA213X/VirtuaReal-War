@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VirtuaReal December War</title>
+    <title>维阿斗虫永不停息版</title>
     <style>
         .ranking-list {
             margin-top: 20px;
@@ -17,10 +17,7 @@
             text-align: left;  /* 确保所有文本内容都从左侧开始对齐 */
         }
         .user-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 10px;
+            display: none; /* 隐藏用户头像 */
         }
         .ranking-info {
             display: flex;
@@ -70,13 +67,10 @@
             font-size: 0.8em;
             color: #888;
             margin-left: 10px;
-
-
         }
         .live-status {
             font-size: 0.9em;
             margin-left: 10px;
-
         }
         .live-status.live {
             color: green;
@@ -91,10 +85,21 @@
         a:hover {
             text-decoration: underline;
         }
+        .level-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            margin-left: 20px;
+        }
+        .level-info div {
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 <body>
-    <h1>VirtuaReal December War</h1>
+    <h1>维阿斗虫永不停息版</h1>
+    <p>积分规则：舰长×168 提督×1998 总督×19998</p>
+    <p>demo部署在hihivr.top上，关注向阳Hihi谢谢喵</p>
     <div id="rankingContainer" class="ranking-list"></div>
 
     <script>
@@ -161,7 +166,7 @@
                         rankingInfo.classList.add('ranking-info');
                         rankingInfo.innerHTML = `
                             <div>
-                                <img src="/avatar/${rank.face}" alt="${rank.uname}'s avatar" class="user-avatar">
+                                <!-- 移除头像图片 -->
                             </div>
                             <div>
                                 <strong>Rank ${rank.rank}</strong> - ${liveLink}
@@ -196,6 +201,16 @@
                             scoreChangeContainer.appendChild(scoreChangeInfo);
                             scoreClass = "";
                         });
+
+                        // Add level info container
+                        const levelInfo = document.createElement('div');
+                        levelInfo.classList.add('level-info');
+                        levelInfo.innerHTML = `
+                            <div>总督: ${rank.total_governor}</div>
+                            <div>提督: ${rank.total_admiral}</div>
+                            <div>舰长: ${rank.total_captain}</div>
+                        `;
+                        listItem.appendChild(levelInfo);
 
                         rankingContainer.appendChild(listItem);
                     });
